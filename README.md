@@ -50,7 +50,7 @@ The API runs at port: `7054` as shown in the screenshot above. Alternatively, yo
 ## Postman results
 
 1) When the request number of the stories is invalid, that is, zero or negative
-![image](https://github.com/AliAshoori/ (TheBestStories/assets/7995157/33a2fdb4-fb1e-419e-8806-6722a9df5638)
+![image](https://github.com/AliAshoori/TheBestStories/assets/7995157/336cb0b8-43ca-4d4a-8ce6-a4123f8571ac)
 2) Happy scenario (no cache)
 ![image](https://github.com/AliAshoori/TheBestStories/assets/7995157/1cb1df2e-9153-413a-8988-e01fed99438b)
 3) Happy scenario (with cache)
