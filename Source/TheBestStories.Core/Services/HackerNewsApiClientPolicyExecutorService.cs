@@ -56,7 +56,7 @@ public class hackernewsapiclientpolicyexecutorservice : IHackerNewsApiClientPoli
         
         try
         {
-            var result = await _PolicyService.AddRetryPolicy()
+            var result =  _PolicyService.AddRetryPolicy()
                         .WrapAsync(_PolicyService.AddCircuitBreaker())
                         .ExecuteAsync(apiCallAsyncAction);
 
