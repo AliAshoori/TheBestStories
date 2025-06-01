@@ -18,7 +18,7 @@ namespace TheBestStories.Api.Controllers
         public async Task<ActionResult<IEnumerable<GetStoryDetailResponse>>> GetBestStoriesAsync([FromQuery] int topNStories)
         {
             var response = await _mediator.Send(new GetBestStoriesRequest(topNStories));
-            
+            // let's test again 
             return Ok(response);
         }
     }
