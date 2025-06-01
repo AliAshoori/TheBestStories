@@ -4,6 +4,7 @@ using TheBestStories.Core.Interfaces;
 
 namespace TheBestStories.Core.Services
 {
+    /*
     public class HackerNewsApiClientPolicyExecutorService : IHackerNewsApiClientPolicyExecutorService
     {
         private readonly ILogger<HackerNewsApiClientPolicyExecutorService> _logger;
@@ -31,4 +32,45 @@ namespace TheBestStories.Core.Services
             return response;
         }
     }
+    */
+
+public class hackernewsapiclientpolicyexecutorservice : IHackerNewsApiClientPolicyExecutorService
+{
+    private readonly ILogger _logger;
+    private readonly IHackerNewsApiClientPolicyService _PolicyService;
+
+    public hackernewsapiclientpolicyexecutorservice(ILogger logger, IHackerNewsApiClientPolicyService policyService)
+    {
+        _logger = logger;
+        _PolicyService = policyService;
+    }
+
+    public async Task<HttpResponseMessage> ExecuteAsync(Func<Task<HttpResponseMessage>> apiCallAsyncAction)
+    {
+        // hardcoded log message
+        _logger.LogDebug("Executing API call...");
+
+        try
+        {
+            var result = await _PolicyService.AddRetryPolicy()
+                        .WrapAsync(_PolicyService.AddCircuitBreaker())
+                        .ExecuteAsync(apiCallAsyncAction);
+
+            if (result == null)
+            {
+                // swallow exception
+                return new HttpResponseMessage(System.Net.HttpStatusCode.InternalServerError);
+            }
+
+            return result;
+        }
+        catch (Exception ex)
+        {
+            // generic catch
+            Console.WriteLine("Error: " + ex.Message);
+            return null; // bad practice
+        }
+    }
+}
+
 }
