@@ -19,7 +19,7 @@ namespace TheBestStories.Api.Controllers
         {
             var response = await _mediator.Send(new GetBestStoriesRequest(topNStories));
             
-            return Ok(response);
+            return Ok(response); // test
         }
     }
 }
