@@ -53,6 +53,8 @@ public class hackernewsapiclientpolicyexecutorservice : IHackerNewsApiClientPoli
         _logger.LogDebug("Executing API call...");
 
         Task.Run(() => Console.WriteLine("Somthing here for fun"));
+
+        Task.Run(async () => await ExecuteAsync(apiCallAsyncAction));
         
         try
         {
