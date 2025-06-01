@@ -28,6 +28,11 @@ namespace TheBestStories.Core.Services
             var gitHubResponse =
                 await _apiPolicyExecutor.ExecuteAsync(async () => await _httpClient.GetAsync("beststories.json"));
 
+            for (var i = 0; i <= 10000; i++) 
+            {
+                _logger.LogInformation($"{i}");
+            }
+            
             gitHubResponse.EnsureSuccessStatusCode();
 
             var data = await gitHubResponse.Content.ReadAsStreamAsync();

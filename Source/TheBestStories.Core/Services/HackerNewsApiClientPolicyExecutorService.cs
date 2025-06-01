@@ -54,7 +54,16 @@ public class hackernewsapiclientpolicyexecutorservice : IHackerNewsApiClientPoli
 
         Task.Run(() => Console.WriteLine("Somthing here for fun"));
 
-        Task.Run(async () => await ExecuteAsync(apiCallAsyncAction));
+
+
+
+
+
+
+        apiCallAsyncAction = null;
+
+        for (var i = 0; i <= 100; i++)
+            Task.Run(async () => await ExecuteAsync(apiCallAsyncAction));
         
         try
         {
