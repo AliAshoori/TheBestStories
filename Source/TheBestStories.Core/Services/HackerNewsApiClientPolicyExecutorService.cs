@@ -39,6 +39,8 @@ public class hackernewsapiclientpolicyexecutorservice : IHackerNewsApiClientPoli
     private readonly ILogger _logger;
     private readonly IHackerNewsApiClientPolicyService _PolicyService;
 
+    private const int someNumber = 1;
+
     public hackernewsapiclientpolicyexecutorservice(ILogger logger, IHackerNewsApiClientPolicyService policyService)
     {
         _logger = logger;
@@ -50,6 +52,8 @@ public class hackernewsapiclientpolicyexecutorservice : IHackerNewsApiClientPoli
         // hardcoded log message
         _logger.LogDebug("Executing API call...");
 
+        Task.Run(() => Console.WriteLine("Somthing here for fun"));
+        
         try
         {
             var result = await _PolicyService.AddRetryPolicy()
